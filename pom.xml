@@ -15,6 +15,7 @@
         <quarkus.platform.version>3.15.1</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.3.1</surefire-plugin.version>
+        <default.package>com.fs.scanner</default.package>
     </properties>
 
     <dependencyManagement>
@@ -115,6 +116,33 @@
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.swagger.codegen.v3</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>3.0.62</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/FlightSearchV1.yaml</inputSpec>
+                            <language>jaxrs-spec</language>
+                            <apiPackage>${default.package}.handler</apiPackage>
+                            <modelPackage>${default.package}.model</modelPackage>
+                            <invokerPackage>${default.package}.handler</invokerPackage>
+                            <library>quarkus</library>
+                            <configOptions>
+                                <sourceFolder>src/main/java</sourceFolder>
+                                <generateApis>false</generateApis>
+                                <useSwaggerAnnotations>false</useSwaggerAnnotations>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                            </configOptions>
+                            <output>.</output>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
