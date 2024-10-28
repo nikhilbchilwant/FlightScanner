@@ -17,13 +17,22 @@ paths:
       summary: Get all flight options for source to destination
       description: Fetch flight details from airlines
       operationId: getFlights
-      requestBody:
-        description: Flight details required for querying airlines
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Flight'
-        required: true
+      parameters:
+        - in: query
+          name: source
+          schema:
+            type: string
+          description: Airport code of the source city e.g. BOM for Mumbai
+        - in: query
+          name: destination
+          schema:
+            type: string
+          description: Airport code of the destination city e.g. FRA for Frankfurt
+        - in: query
+          name: travelDate
+          schema:
+            type: string
+          description: Date in DD-MM-YYYY format
       responses:
         '200':
           description: Successful operation
@@ -63,7 +72,7 @@ components:
           type: string
           format: date-time
   securitySchemes:
-    petstore_auth:
+    flights_auth:
       type: oauth2
       flows:
         implicit:

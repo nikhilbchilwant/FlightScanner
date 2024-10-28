@@ -19,9 +19,8 @@ import java.util.List;
 public class FlightsApi {
 
     @GET
-    @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public Response getFlights(Flight flight) {
+    public Response getFlights(@QueryParam("source")   String source,@QueryParam("destination")   String destination,@QueryParam("travelDate")   String travelDate) {
         return Response.ok().entity("magic!").build();
     }
 }
