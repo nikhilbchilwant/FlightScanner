@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.fs</groupId>
+        <artifactId>flight-scanner</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.scanner</groupId>
+    <artifactId>fs-models</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>7.8.0</version>
+                <executions>
+                    <execution>
+                        <id>lufthansa-models</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/Lufthansa-V1.yaml</inputSpec>
+                            <generatorName>jaxrs-spec</generatorName>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <configOptions>
+                                <sourceFolder>src/main/java</sourceFolder>
+                                <useJakartaEe>true</useJakartaEe>
+                                <useSwaggerAnnotations>false</useSwaggerAnnotations>
+                                <library>quarkus</library>
+                                <dateLibrary>java8</dateLibrary>
+                                <apiPackage>${default.package}.lufthansa.handler</apiPackage>
+                                <modelPackage>${default.package}.lufthansa.model</modelPackage>
+                                <useBeanValidation>false</useBeanValidation>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <interfaceOnly>true</interfaceOnly>
+                            </configOptions>
+                            <output>.</output>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>klm-models</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/Klm-V1.yaml</inputSpec>
+                            <generatorName>jaxrs-spec</generatorName>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <configOptions>
+                                <sourceFolder>src/main/java</sourceFolder>
+                                <useJakartaEe>true</useJakartaEe>
+                                <useSwaggerAnnotations>false</useSwaggerAnnotations>
+                                <library>quarkus</library>
+                                <dateLibrary>java8</dateLibrary>
+                                <apiPackage>${default.package}.klm.handler</apiPackage>
+                                <modelPackage>${default.package}.klm.model</modelPackage>
+                                <useBeanValidation>false</useBeanValidation>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <interfaceOnly>true</interfaceOnly>
+                            </configOptions>
+                            <output>.</output>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
