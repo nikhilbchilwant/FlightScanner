@@ -4,7 +4,7 @@ info:
   description: A mock providing offer bids
   version: 0.1.0
 servers:
-  - url: https://localhost:30133/v1/klm
+  - url: https://localhost:30133/mock/v1/klm
 tags:
   - name: offer
     description: Price offer and related details
@@ -12,7 +12,7 @@ tags:
     description: required details to get an offer bid
 
 paths:
-  /offers:
+  /klm/offers:
     post:
       tags:
         - offer
@@ -38,15 +38,23 @@ components:
     Offer:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          example: 10
+        offerPrice:
+          type: number
+          format: double
+          description: Lowest offered price in Euros
+          example: 520.42
 
     FlightDetails:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          example: 100000
+        origin:
+          type: string
+          description: Airport code of starting point
+          example: FRA
+        destination:
+          type: string
+          description: Airport code of destination point
+          example: BOM
+        travelDate:
+          format: date
+          example: 2024-01-01

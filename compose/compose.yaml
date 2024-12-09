@@ -1,0 +1,10 @@
+services:
+  fs-mock:
+    image: nikhil/fs-mock:latest
+    ports:
+      - "30133:8080"
+
+  fs-service:
+    image: nikhil/fs-service
+    ports:
+      - ":30063:8080"

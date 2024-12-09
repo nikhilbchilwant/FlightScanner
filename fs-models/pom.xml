@@ -45,6 +45,7 @@
                                 <useBeanValidation>false</useBeanValidation>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <interfaceOnly>true</interfaceOnly>
+                                <openApiNullable>false</openApiNullable>
                             </configOptions>
                             <output>.</output>
                         </configuration>
@@ -69,6 +70,7 @@
                                 <useBeanValidation>false</useBeanValidation>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <interfaceOnly>true</interfaceOnly>
+                                <openApiNullable>false</openApiNullable>
                             </configOptions>
                             <output>.</output>
                         </configuration>
