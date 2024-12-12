@@ -16,66 +16,18 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>${quarkus.platform.group-id}</groupId>
-                <artifactId>quarkus-maven-plugin</artifactId>
-                <version>${quarkus.platform.version}</version>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>generate-code</goal>
-                            <goal>generate-code-tests</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler-plugin.version}</version>
-                <configuration>
-                    <parameters>true</parameters>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.8.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/FlightSearchV1.yaml</inputSpec>
-                            <generatorName>jaxrs-spec</generatorName>
-                            <generateSupportingFiles>false</generateSupportingFiles>
-                            <configOptions>
-                                <sourceFolder>src/main/java</sourceFolder>
-                                <useJakartaEe>true</useJakartaEe>
-                                <useSwaggerAnnotations>false</useSwaggerAnnotations>
-                                <library>quarkus</library>
-                                <dateLibrary>java8</dateLibrary>
-                                <apiPackage>${default.package}.handler</apiPackage>
-                                <modelPackage>${default.package}.model</modelPackage>
-                                <useBeanValidation>false</useBeanValidation>
-                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
-                            </configOptions>
-                            <output>.</output>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.scanner</groupId>
+            <artifactId>fs-models</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <profiles>
         <profile>
-            <id>Docker</id>
+            <id>docker-build</id>
             <build>
                 <plugins>
                     <plugin>
@@ -88,6 +40,64 @@
                                 <goals>
                                     <goal>image-build</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>generate-code</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>${quarkus.platform.group-id}</groupId>
+                        <artifactId>quarkus-maven-plugin</artifactId>
+                        <version>${quarkus.platform.version}</version>
+                        <extensions>true</extensions>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>generate-code</goal>
+                                    <goal>generate-code-tests</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>${compiler-plugin.version}</version>
+                        <configuration>
+                            <parameters>true</parameters>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.openapitools</groupId>
+                        <artifactId>openapi-generator-maven-plugin</artifactId>
+                        <version>7.8.0</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <inputSpec>${project.basedir}/src/main/resources/FlightSearchV1.yaml</inputSpec>
+                                    <generatorName>jaxrs-spec</generatorName>
+                                    <generateSupportingFiles>false</generateSupportingFiles>
+                                    <configOptions>
+                                        <sourceFolder>src/main/java</sourceFolder>
+                                        <useJakartaEe>true</useJakartaEe>
+                                        <useSwaggerAnnotations>false</useSwaggerAnnotations>
+                                        <library>quarkus</library>
+                                        <dateLibrary>java8</dateLibrary>
+                                        <apiPackage>${default.package}.handler</apiPackage>
+                                        <modelPackage>${default.package}.model</modelPackage>
+                                        <useBeanValidation>false</useBeanValidation>
+                                        <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                    </configOptions>
+                                    <output>.</output>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
