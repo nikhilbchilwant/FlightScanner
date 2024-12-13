@@ -5,8 +5,7 @@ import com.fs.scanner.lufthansa.model.Offer;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
-
-
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 
 import java.io.InputStream;
@@ -16,7 +15,7 @@ import java.util.List;
 
 
 @Path("/lufthansa/offers")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: 7.8.0")
+@RegisterRestClient(configKey = "lufthansa-api")
 public interface LufthansaApi {
 
     @POST

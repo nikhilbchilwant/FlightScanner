@@ -10,7 +10,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 
 @Path("/klm/offers")
-@RegisterRestClient
+@RegisterRestClient(configKey = "klm-api")
 public interface KlmApi {
 
     @POST

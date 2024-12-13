@@ -39,7 +39,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Flight'
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/components/schemas/Flight'
         '400':
           description: Invalid input supplied
         '404':
@@ -71,6 +74,23 @@ components:
         arrival:
           type: string
           format: date-time
+        AdditionalInfo:
+          type: object
+          properties:
+            Prediction:
+              $ref: "#/components/schemas/Prediction"
+
+    Prediction:
+      type: object
+      properties:
+        priceTrend:
+          format: string
+          example: The price is likely to be higher in the upcoming week.
+        Explanation:
+          format: string
+          example: The queries for the destinations tend to go up next week. (??)
+
+
   securitySchemes:
     flights_auth:
       type: oauth2
