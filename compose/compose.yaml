@@ -7,4 +7,5 @@ services:
   fs-service:
     image: nikhil/fs-service
     ports:
-      - ":30063:8080"
+      - "30063:8080"
+      - "5005:5005"

@@ -1,7 +1,7 @@
 package com.fs.scanner.handler;
 
 import com.fs.scanner.client.AggregationService;
-import com.fs.scanner.klm.model.FlightDetails;
+import com.fs.scanner.common.model.FlightDetails;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -19,6 +19,6 @@ public class FlightsApi {
     @GET
     @Produces({"application/json"})
     public Response getFlights(@QueryParam("source") String source, @QueryParam("destination") String destination, @QueryParam("travelDate") String travelDate) {
-        return Response.ok().entity("magic").build();
+        return Response.ok(aggregationService.getOffers(null)).build();
     }
 }
