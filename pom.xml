@@ -68,6 +68,10 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client-jackson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
       <artifactId>quarkus-rest</artifactId>
     </dependency>
   </dependencies>
@@ -139,7 +143,7 @@
       </properties>
     </profile>
     <profile>
-      <id>docker-build</id>
+      <id>docker</id>
       <build>
         <plugins>
           <plugin>

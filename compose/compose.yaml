@@ -1,11 +1,12 @@
 services:
   fs-mock:
     image: nikhil/fs-mock:latest
+    container_name: fs-mock
     ports:
-      - "30133:8080"
+      - "30233:8080"
 
   fs-service:
     image: nikhil/fs-service
+    container_name: fs-service
     ports:
-      - "30063:8080"
-      - "5005:5005"
+      - "30093:8080"
