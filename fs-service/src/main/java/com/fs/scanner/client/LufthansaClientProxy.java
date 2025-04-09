@@ -19,6 +19,7 @@ public class LufthansaClientProxy implements OfferProvider {
     @Override
     public Offer call() {
         log.info("Lufthansa client " + lufthansaClient);
-        return null;
+        com.fs.scanner.lufthansa.model.Offer lufthansaOffer = lufthansaClient.offer(null);
+        return new Offer("Lufthansa", lufthansaOffer.getOfferPrice());
     }
 }

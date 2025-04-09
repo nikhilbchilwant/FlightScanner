@@ -45,7 +45,7 @@
 
     <profiles>
         <profile>
-            <id>Docker</id>
+            <id>docker</id>
             <build>
                 <plugins>
                     <plugin>
