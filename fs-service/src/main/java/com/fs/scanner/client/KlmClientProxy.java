@@ -1,6 +1,7 @@
 package com.fs.scanner.client;
 
 import com.fs.scanner.common.handler.OfferProvider;
+import com.fs.scanner.common.model.FlightDetails;
 import com.fs.scanner.common.model.Offer;
 import com.fs.scanner.klm.handler.KlmApi;
 import jakarta.enterprise.context.Dependent;
@@ -17,9 +18,11 @@ public class KlmClientProxy implements OfferProvider {
     private KlmApi klmClient;
 
     @Override
-    public Offer call() {
-        log.info("KLM client " + klmClient);
-        com.fs.scanner.klm.model.Offer klmOffer = klmClient.offer(null);
+    public Offer call(FlightDetails flightDetails) {
+        log.trace("KLM client " + klmClient);
+        com.fs.scanner.klm.model.FlightDetails klmFlightDetails =
+                new com.fs.scanner.klm.model.FlightDetails().origin(flightDetails.getSource()).destination(flightDetails.getDestination()).travelDate(flightDetails.getTravelDate());
+        com.fs.scanner.klm.model.Offer klmOffer = klmClient.offer(klmFlightDetails);
         return new Offer("KLM", klmOffer.getOfferPrice());
     }
 }

@@ -9,6 +9,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
 
+import java.time.LocalDate;
 
 @Path("/flights")
 public class FlightsApi {
@@ -19,6 +20,8 @@ public class FlightsApi {
     @GET
     @Produces({"application/json"})
     public Response getFlights(@QueryParam("source") String source, @QueryParam("destination") String destination, @QueryParam("travelDate") String travelDate) {
-        return Response.ok(aggregationService.getOffers(null)).build();
+        FlightDetails flightDetails =
+                new FlightDetails.FlightDetailsBuilder().setSource(source).setDestination(destination).setTravelDate(LocalDate.parse(travelDate)).build();
+        return Response.ok(aggregationService.getOffers(flightDetails)).build();
     }
 }

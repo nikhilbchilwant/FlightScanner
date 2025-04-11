@@ -28,12 +28,12 @@ public class AggregationService {
     ManagedExecutor aggregationExecutor;
 
     public List<Offer> getOffers(FlightDetails flightDetails) {
-        log.info("AggregationService bean " + this);
+        log.trace("AggregationService bean " + this);
         Iterator<OfferProvider> iterator = clients.iterator();
         List<Offer> offers = new ArrayList<>();
         while (iterator.hasNext()) {
             OfferProvider provider = iterator.next();
-            offers.add(provider.call());
+            offers.add(provider.call(flightDetails));
         }
 
         return offers;

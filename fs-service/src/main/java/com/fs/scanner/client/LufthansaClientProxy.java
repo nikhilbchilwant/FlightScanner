@@ -1,6 +1,7 @@
 package com.fs.scanner.client;
 
 import com.fs.scanner.common.handler.OfferProvider;
+import com.fs.scanner.common.model.FlightDetails;
 import com.fs.scanner.common.model.Offer;
 import com.fs.scanner.lufthansa.handler.LufthansaApi;
 import jakarta.enterprise.context.Dependent;
@@ -17,7 +18,7 @@ public class LufthansaClientProxy implements OfferProvider {
     private LufthansaApi lufthansaClient;
 
     @Override
-    public Offer call() {
+    public Offer call(FlightDetails flightDetails) {
         log.info("Lufthansa client " + lufthansaClient);
         com.fs.scanner.lufthansa.model.Offer lufthansaOffer = lufthansaClient.offer(null);
         return new Offer("Lufthansa", lufthansaOffer.getOfferPrice());
