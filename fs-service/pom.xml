@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.scanner</groupId>
             <artifactId>fs-models</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>${fs-models.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
