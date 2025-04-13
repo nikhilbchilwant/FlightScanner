@@ -4,6 +4,7 @@ import com.fs.scanner.common.handler.OfferProvider;
 import com.fs.scanner.common.model.FlightDetails;
 import com.fs.scanner.common.model.Offer;
 import com.fs.scanner.lufthansa.handler.LufthansaApi;
+import io.quarkus.cache.CacheResult;
 import jakarta.enterprise.context.Dependent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,9 +19,12 @@ public class LufthansaClientProxy implements OfferProvider {
     private LufthansaApi lufthansaClient;
 
     @Override
+    @CacheResult(cacheName = "offers-cache", keyGenerator = FlightDetailsCacheKeyGenerator.class)
     public Offer call(FlightDetails flightDetails) {
-        log.info("Lufthansa client " + lufthansaClient);
-        com.fs.scanner.lufthansa.model.Offer lufthansaOffer = lufthansaClient.offer(null);
+        log.trace("Lufthansa client " + lufthansaClient);
+                com.fs.scanner.lufthansa.model.FlightDetails lufthansaFlightDetails =
+                new com.fs.scanner.lufthansa.model.FlightDetails().origin(flightDetails.getSource()).destination(flightDetails.getDestination()).travelDate(flightDetails.getTravelDate());
+        com.fs.scanner.lufthansa.model.Offer lufthansaOffer = lufthansaClient.offer(lufthansaFlightDetails);
         return new Offer("Lufthansa", lufthansaOffer.getOfferPrice());
     }
 }

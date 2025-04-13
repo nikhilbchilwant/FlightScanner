@@ -4,6 +4,7 @@ import com.fs.scanner.common.handler.OfferProvider;
 import com.fs.scanner.common.model.FlightDetails;
 import com.fs.scanner.common.model.Offer;
 import com.fs.scanner.klm.handler.KlmApi;
+import io.quarkus.cache.CacheResult;
 import jakarta.enterprise.context.Dependent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,6 +19,7 @@ public class KlmClientProxy implements OfferProvider {
     private KlmApi klmClient;
 
     @Override
+    @CacheResult(cacheName = "offers-cache", keyGenerator = FlightDetailsCacheKeyGenerator.class)
     public Offer call(FlightDetails flightDetails) {
         log.trace("KLM client " + klmClient);
         com.fs.scanner.klm.model.FlightDetails klmFlightDetails =
