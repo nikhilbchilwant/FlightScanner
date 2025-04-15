@@ -10,3 +10,9 @@ services:
     container_name: fs-service
     ports:
       - "30093:8080"
+
+  fs-warehouse:
+    image: nikhil/fs-warehouse
+    container_name: fs-warehouse
+    ports:
+      - "30533:8080"

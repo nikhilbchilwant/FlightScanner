@@ -9,6 +9,7 @@
       <module>fs-mock</module>
       <module>fs-service</module>
       <module>fs-models</module>
+      <module>fs-warehouse</module>
     </modules>
 
     <properties>
@@ -78,6 +79,10 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-cache</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-messaging-rabbitmq</artifactId>
     </dependency>
   </dependencies>
 

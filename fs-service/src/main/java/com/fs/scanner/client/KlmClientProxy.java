@@ -25,6 +25,6 @@ public class KlmClientProxy implements OfferProvider {
         com.fs.scanner.klm.model.FlightDetails klmFlightDetails =
                 new com.fs.scanner.klm.model.FlightDetails().origin(flightDetails.getSource()).destination(flightDetails.getDestination()).travelDate(flightDetails.getTravelDate());
         com.fs.scanner.klm.model.Offer klmOffer = klmClient.offer(klmFlightDetails);
-        return new Offer("KLM", klmOffer.getOfferPrice());
+        return new Offer.OfferBuilder().setBidder("KLM").setValue(klmOffer.getOfferPrice()).setSource(flightDetails.getSource()).setDestination(flightDetails.getDestination()).createOffer();
     }
 }
