@@ -29,7 +29,7 @@ public class AggregationService {
     @ManagedExecutorConfig(maxAsync = 4)
     ManagedExecutor aggregationExecutor;
 
-    @Channel("flight-datapoints") Emitter<Offer> flightDatapointsEmitter;
+    @Channel("offers") Emitter<Offer> flightDatapointsEmitter;
 
     public List<Offer> getOffers(FlightDetails flightDetails) {
         log.trace("AggregationService bean " + this);

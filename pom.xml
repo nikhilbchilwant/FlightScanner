@@ -153,7 +153,7 @@
       </properties>
     </profile>
     <profile>
-      <id>docker</id>
+      <id>docker-build</id>
       <build>
         <plugins>
           <plugin>

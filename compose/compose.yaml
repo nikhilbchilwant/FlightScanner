@@ -8,11 +8,23 @@ services:
   fs-service:
     image: nikhil/fs-service
     container_name: fs-service
+    environment:
+      RABBITMQ_HOST: fs-rabbit
+      RABBITMQ_PORT: 5672
     ports:
-      - "30093:8080"
+      - "30093:4041"
 
   fs-warehouse:
     image: nikhil/fs-warehouse
     container_name: fs-warehouse
+    environment:
+      RABBITMQ_HOST: fs-rabbit
+      RABBITMQ_PORT: 5672
     ports:
       - "30533:8080"
+
+  fs-rabbit:
+    image: rabbitmq:3.9-management
+    container_name: fs-rabbit
+    ports:
+      - "5672:5672"

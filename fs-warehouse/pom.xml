@@ -19,11 +19,17 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.scanner</groupId>
+            <artifactId>fs-models</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
         <profile>
-            <id>docker</id>
+            <id>docker-build</id>
             <build>
                 <plugins>
                     <plugin>

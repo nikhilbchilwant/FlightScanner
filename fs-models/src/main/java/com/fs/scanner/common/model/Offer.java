@@ -1,17 +1,21 @@
 package com.fs.scanner.common.model;
 
+import java.time.LocalDateTime;
+
 public class Offer {
 
     private String bidder;
     private double value;
     private String source;
     private String destination;
+    private LocalDateTime responseDateTime;
 
     private Offer(String bidder, double value, String source, String destination) {
         this.bidder = bidder;
         this.value = value;
         this.source = source;
         this.destination = destination;
+        this.responseDateTime = LocalDateTime.now();
     }
 
     public String getBidder() {
@@ -44,6 +48,20 @@ public class Offer {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public LocalDateTime getResponseDateTime() {
+        return responseDateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "source='" + source + '\'' +
+                ", destination='" + destination + '\'' +
+                ", responseDateTime=" + responseDateTime +
+                ", value=" + value +
+                '}';
     }
 
     public static class OfferBuilder {
