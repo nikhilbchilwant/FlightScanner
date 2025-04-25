@@ -8,6 +8,8 @@ import io.quarkus.cache.CacheResult;
 import jakarta.enterprise.context.Dependent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 @Dependent
@@ -18,6 +20,9 @@ public class KlmClientProxy implements OfferProvider {
     @RestClient
     private KlmApi klmClient;
 
+    @Channel("offers")
+    Emitter<Offer> flightDatapointsEmitter;
+
     @Override
     @CacheResult(cacheName = "offers-cache", keyGenerator = FlightDetailsCacheKeyGenerator.class)
     public Offer call(FlightDetails flightDetails) {
@@ -25,6 +30,8 @@ public class KlmClientProxy implements OfferProvider {
         com.fs.scanner.klm.model.FlightDetails klmFlightDetails =
                 new com.fs.scanner.klm.model.FlightDetails().origin(flightDetails.getSource()).destination(flightDetails.getDestination()).travelDate(flightDetails.getTravelDate());
         com.fs.scanner.klm.model.Offer klmOffer = klmClient.offer(klmFlightDetails);
-        return new Offer.OfferBuilder().setBidder("KLM").setValue(klmOffer.getOfferPrice()).setSource(flightDetails.getSource()).setDestination(flightDetails.getDestination()).createOffer();
+        Offer offer = new Offer.OfferBuilder().setBidder("KLM").setValue(klmOffer.getOfferPrice()).setSource(flightDetails.getSource()).setDestination(flightDetails.getDestination()).createOffer();
+        flightDatapointsEmitter.send(offer);
+        return offer;
     }
 }

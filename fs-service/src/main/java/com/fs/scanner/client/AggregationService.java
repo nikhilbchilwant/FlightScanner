@@ -11,8 +11,6 @@ import jakarta.inject.Inject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.microprofile.context.ManagedExecutor;
-import org.eclipse.microprofile.reactive.messaging.Channel;
-import org.eclipse.microprofile.reactive.messaging.Emitter;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,7 +27,7 @@ public class AggregationService {
     @ManagedExecutorConfig(maxAsync = 4)
     ManagedExecutor aggregationExecutor;
 
-    @Channel("offers") Emitter<Offer> flightDatapointsEmitter;
+
 
     public List<Offer> getOffers(FlightDetails flightDetails) {
         log.trace("AggregationService bean " + this);
@@ -39,7 +37,6 @@ public class AggregationService {
             OfferProvider provider = iterator.next();
             Offer offer = provider.call(flightDetails);
             offers.add(offer);
-            flightDatapointsEmitter.send(offer);
         }
 
         return offers;

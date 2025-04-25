@@ -57,10 +57,11 @@ public class Offer {
     @Override
     public String toString() {
         return "Offer{" +
-                "source='" + source + '\'' +
+                "bidder='" + bidder + '\'' +
+                ", value=" + value +
+                ", source='" + source + '\'' +
                 ", destination='" + destination + '\'' +
                 ", responseDateTime=" + responseDateTime +
-                ", value=" + value +
                 '}';
     }
 
