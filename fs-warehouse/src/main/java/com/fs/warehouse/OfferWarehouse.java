@@ -17,6 +17,6 @@ public class OfferWarehouse {
     @Blocking
     public void process(JsonObject message) {
         Offer offer = message.mapTo(Offer.class);
-        log.info(offer.toString());
+        log.info("Received " + offer.toString());
     }
 }
