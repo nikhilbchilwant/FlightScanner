@@ -12,7 +12,10 @@
         http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
     <changeSet author="nikhil" id="1">
-        <createTable tableName="offers">
+        <sql dbms="postgresql" endDelimiter=";">
+            CREATE SCHEMA IF NOT EXISTS warehouse
+        </sql>
+        <createTable tableName="offers" schemaName="warehouse">
             <column name="id" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
@@ -22,5 +25,8 @@
             <column name="destination" type="VARCHAR(255)"/>
             <column name="responseDateTime" type="DATETIME"/>
         </createTable>
+        <rollback>
+            <dropTable tableName="offers"/>
+        </rollback>
     </changeSet>
 </databaseChangeLog>

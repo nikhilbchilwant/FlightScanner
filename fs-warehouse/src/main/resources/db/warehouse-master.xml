@@ -10,6 +10,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro
         http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
-    <include file="db/app-init.sql"/>
+<!--    <include file="db/app-init.sql"/>-->
     <include file="db/warehouse-1.0.xml"/>
 </databaseChangeLog>
