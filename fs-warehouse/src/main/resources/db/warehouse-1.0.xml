@@ -16,14 +16,14 @@
             CREATE SCHEMA IF NOT EXISTS warehouse
         </sql>
         <createTable tableName="offers" schemaName="warehouse">
-            <column name="id" type="VARCHAR(255)">
-                <constraints nullable="false"/>
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="bidder" type="VARCHAR(255)"/>
             <column name="value" type="DOUBLE"/>
             <column name="source" type="VARCHAR(255)"/>
             <column name="destination" type="VARCHAR(255)"/>
-            <column name="responseDateTime" type="DATETIME"/>
+            <column name="responsedatetime" type="DATETIME"/>
         </createTable>
         <rollback>
             <dropTable tableName="offers"/>

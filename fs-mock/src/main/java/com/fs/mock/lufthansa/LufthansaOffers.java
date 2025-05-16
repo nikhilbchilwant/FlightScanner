@@ -16,7 +16,7 @@ public class LufthansaOffers implements LufthansaApi {
 
     @Override
     public Offer offer(FlightDetails flightDetails) {
-        double offerPrice = new Random().nextDouble(200, 250);
+        double offerPrice = Math.floor(new Random().nextDouble(200, 250) * 100) / 100;
         Offer offer = new Offer().offerPrice(offerPrice);
         log.debug(offer);
         return offer;

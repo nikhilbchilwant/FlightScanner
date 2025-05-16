@@ -21,7 +21,7 @@ public class KlmOffers implements KlmApi {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        double offerPrice = new Random().nextDouble(200, 250);
+        double offerPrice = Math.floor(new Random().nextDouble(200, 250) * 100) / 100;
         Offer offer = new Offer().offerPrice(offerPrice);
         log.debug(offer);
         return offer;
