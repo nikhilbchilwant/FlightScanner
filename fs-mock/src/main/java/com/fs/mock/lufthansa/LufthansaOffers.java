@@ -14,6 +14,12 @@ public class LufthansaOffers implements LufthansaApi {
 
     private static final Log log = LogFactory.getLog(LufthansaOffers.class);
 
+    /**
+     * @param flightDetails
+     * @return an Offer with random price.
+     *
+     * In future, we would like to return the price based on demand (dynamic pricing).
+     */
     @Override
     public Offer offer(FlightDetails flightDetails) {
         double offerPrice = Math.floor(new Random().nextDouble(200, 250) * 100) / 100;

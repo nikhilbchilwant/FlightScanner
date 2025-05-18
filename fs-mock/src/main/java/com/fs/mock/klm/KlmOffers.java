@@ -14,6 +14,12 @@ public class KlmOffers implements KlmApi {
 
     private static final Log log = LogFactory.getLog(KlmOffers.class);
 
+    /**
+     * @param flightDetails
+     * @return an Offer with random price.
+     *
+     * In future, we would like to return the price based on demand (dynamic pricing).
+     */
     @Override
     public Offer offer(FlightDetails flightDetails) {
         try {

@@ -22,6 +22,9 @@ public class AggregationService {
     @Any
     Instance<OfferProvider> clients;
 
+    /**
+     * Calls /offers endpoints of the offer providers and collects the offers.
+     */
     public List<Offer> getOffers(FlightDetails flightDetails) {
         log.trace("AggregationService bean " + this);
         return clients.stream().parallel().map(offerProvider -> offerProvider.call(flightDetails)).collect(Collectors.toList());
