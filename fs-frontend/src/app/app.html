@@ -1,0 +1,5 @@
+<app-header></app-header>
+<main>
+  <app-flight-search (search)="onSearch($event)"></app-flight-search>
+  <app-flight-results [flights]="flights"></app-flight-results>
+</main>

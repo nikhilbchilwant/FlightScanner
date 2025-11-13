@@ -1,0 +1,23 @@
+<div *ngIf="flights.length > 0">
+  <h2>Flight Results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Airline</th>
+        <th>Flight Number</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let flight of flights">
+        <td>{{ flight.airline }}</td>
+        <td>{{ flight.flightNumber }}</td>
+        <td>{{ flight.departureTime }}</td>
+        <td>{{ flight.arrivalTime }}</td>
+        <td>{{ flight.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
