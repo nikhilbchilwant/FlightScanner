@@ -1,25 +1,12 @@
-import { Component } from '@angular/core';
-import { Header } from './header/header';
-import { FlightSearch } from './flight-search/flight-search';
-import { FlightResults } from './flight-results/flight-results';
-import { FlightService } from './services/flight';
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [Header, FlightSearch, FlightResults],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  flights: any[] = [];
-
-  constructor(private flightService: FlightService) {}
-
-  onSearch(searchCriteria: any) {
-    this.flightService.getFlights(searchCriteria.source, searchCriteria.destination, searchCriteria.travelDate)
-      .subscribe(flights => {
-        this.flights = flights;
-      });
-  }
+  protected readonly title = signal('fs-frontend');
 }
